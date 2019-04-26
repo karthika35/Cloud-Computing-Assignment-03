@@ -10,8 +10,9 @@
     </parent>
     <groupId>com.ragul</groupId>
     <artifactId>assignment3</artifactId>
-    <version>1</version>
+    <version>0.2</version>
     <name>assignment3</name>
+    <packaging>jar</packaging>
     <description>Assignment for Distributed and Cloud Computing Module - Assignment 03</description>
 
     <properties>
@@ -22,10 +23,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator-docs</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,6 +55,7 @@
     </dependencies>
 
     <build>
+        <finalName>assignment3</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

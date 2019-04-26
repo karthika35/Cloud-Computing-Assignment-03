@@ -14,22 +14,22 @@ public class StateController {
     StateRepository stateRepository;
 
     @GetMapping(path = "codeToState")
-    public ResponseEntity<State> codeToState(@RequestParam String code) {
+    public ResponseEntity<String> codeToState(@RequestParam String code) {
         State state = stateRepository.findFirstByAbbreviation(code);
 
         if (isEmpty(state)) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().body(state);
+        return ResponseEntity.ok().body(state.getName());
     }
 
     @GetMapping(path = "stateToCode")
-    public ResponseEntity<State> stateToCode(@RequestParam String state) {
-        State dDtate = stateRepository.findFirstByName(state);
+    public ResponseEntity<String> stateToCode(@RequestParam String stateName) {
+        State state = stateRepository.findFirstByName(stateName);
 
-        if (isEmpty(dDtate)) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().body(dDtate);
+        if (isEmpty(state)) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(state.getAbbreviation());
     }
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/all")
     public ResponseEntity<Iterable<State>> getAll() {
         Iterable<State> dDtate = stateRepository.findAll();
         return ResponseEntity.ok().body(dDtate);
