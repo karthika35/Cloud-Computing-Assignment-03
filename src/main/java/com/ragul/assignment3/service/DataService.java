@@ -11,13 +11,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class DataService {
     @Autowired
     StateService stateService;
 
-    public void getDataFromFile() {
+    public void getDataFromFile() throws InterruptedException {
         // read JSON and load json
         try {
             URL url = new URL("https://gist.githubusercontent.com/mshafrir/2646763/raw/8b0dbb93521f5d6889502305335104218454c2bf/states_titlecase.json");
@@ -38,8 +39,9 @@ public class DataService {
             this.stateService.save(states);
             System.out.println("states Saved!");
         } catch (IOException e) {
-
             System.out.println("Unable to save states: " + e.getMessage());
+            TimeUnit.SECONDS.sleep(2);
+            this.getDataFromFile();
 
         }
     }
