@@ -1,6 +1,6 @@
 package com.ragul.assignment3;
 
-import com.ragul.assignment3.service.StateService;
+import com.ragul.assignment3.service.DataService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,10 +15,8 @@ public class Assignment3Application {
     }
 
     @Bean
-    CommandLineRunner runner(StateService stateService) {
-        return args -> {
-            stateService.getDataFromFile();
-        };
+    CommandLineRunner runner(DataService dataService) {
+        return args -> dataService.getDataFromFile();
     }
 
 
